@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Assessment Payment</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-col>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          Payment Information
+        </ion-card-title>
+        <ion-card-subtitle>
+          Fill the information
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label>
+            Assessment ID
+          </ion-label>
+          <p>454</p>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            Payment Value :
+          </ion-label>
+          <ion-input type="number"></ion-input>
+        </ion-item>
+
+        <ion-radio-group [(ngModel)]="payType" (ngModelChange)="payTypeChange()">
+          <ion-list-header>
+            <ion-label>Payment Type</ion-label>
+          </ion-list-header>
+
+          <ion-item>
+            <ion-label>Cash</ion-label>
+            <ion-radio slot="start" value="cash"></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Cheque</ion-label>
+            <ion-radio slot="start" value="cheque"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+
+        <div *ngIf="payType=='cheque'">
+
+
+          <ion-item>
+            <ion-label>
+              Cheque No :
+            </ion-label>
+            <ion-input></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>
+              Cheque Bank :
+            </ion-label>
+            <ion-select>
+              <ion-select-option>BOC</ion-select-option>
+              <ion-select-option>PEOPLES</ion-select-option>
+              <ion-select-option>COMMERSIAL</ion-select-option>
+              <ion-select-option>SAMPATH</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+
+        </div>
+
+        <br>
+        <ion-button expand="full" color="danger">
+          <ion-icon name="cash-outline"></ion-icon> &nbsp;&nbsp;&nbsp; Pay And Print Recipt
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </ion-col>
+
+
+
+</ion-content>

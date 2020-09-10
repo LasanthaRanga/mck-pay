@@ -1,0 +1,159 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Search Assessment</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-row>
+    <ion-col>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>
+            Search Assessment By Assessment ID
+          </ion-card-title>
+          <ion-card-subtitle>
+            You can find your Assessment id from your K-Form
+          </ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-item>
+            <ion-label position="floating">
+              Assessment ID
+            </ion-label>
+            <ion-input [(ngModel)]="idAssess"></ion-input>
+          </ion-item>
+          <ion-button expand="full" (click)="findAssessment()">
+            <ion-icon name="search-circle-outline"></ion-icon>Find
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+
+  <ion-row>
+    <ion-grid>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Search Assessment By...</ion-card-title>
+          <ion-card-subtitle>
+            Ward, Street, Assessment No.
+          </ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list>
+            <ion-item>
+              <ion-label>Ward</ion-label>
+              <ion-select [(ngModel)]="selectedWard" (ngModelChange)="loadStreetCombo()">
+                <ion-select-option *ngFor="let w of wardList" [value]="w">{{w.ward_name}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Street</ion-label>
+              <ion-select [(ngModel)]="selectedStreet">
+                <ion-select-option *ngFor="let s of streetList" [value]="s">{{s.street_name}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Assessment No</ion-label>
+              <ion-input [(ngModel)]="assno"></ion-input>
+              <ion-button (click)="searchAssessment()">Search</ion-button>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </ion-grid>
+  </ion-row>
+
+  <ion-row>
+    <ion-grid>
+      <ion-card *ngFor="let ass of assessmentArray">
+        <ion-card-content>
+          <p>Customer Name: {{ass.cus_name}}</p>
+          <p>Assessment No: {{ass.assessment_no}}</p>
+          <p>Nature : {{ass.ass_nature_name}}</p>
+          <p>Description : {{ass.ass_discription}}</p>
+          <ion-item lines="none">
+            <ion-button slot="end" (click)="addAssessment(ass)">ADD</ion-button>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </ion-grid>
+  </ion-row>
+
+
+  <ion-col>
+    <ion-card *ngIf="selectedAssessment">
+      <ion-card-header>
+        <ion-card-title>
+          Customer Name : <strong>{{selectedAssessment?.cus_name}}</strong>
+        </ion-card-title>
+        <ion-card-subtitle>
+          Assessment No : <strong>{{selectedAssessment?.assessment_no}}</strong>
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-label>Ward</ion-label>{{selectedAssessment?.ward_name}}
+          </ion-item>
+          <ion-item>
+            <ion-label>Street</ion-label>{{selectedAssessment?.street_name}}
+          </ion-item>
+          <ion-item>
+            <ion-label>Assessment No</ion-label>{{selectedAssessment?.assessment_no}}
+          </ion-item>
+          <ion-item>
+            <ion-label>Nature</ion-label>{{selectedAssessment?.ass_nature_name}}
+          </ion-item>
+          <ion-item>
+            <ion-label>Description</ion-label>{{selectedAssessment?.ass_discription}}
+          </ion-item>
+          <ion-item>
+            <ion-label>Allocation</ion-label>Rs. {{selectedAssessment?.ass_allocation}}
+          </ion-item>
+          <br>
+          <ion-item>
+            <ion-label>Last Year Arrears </ion-label>
+            <p class="arrears">{{selectedBalance?.lya}}</p>
+          </ion-item>
+          <ion-item>
+            <ion-label>Last Year Warrant</ion-label>
+            <p class="arrears">{{selectedBalance?.lyw}}</p>
+          </ion-item>
+          <ion-item>
+            <ion-label>This Year Arrears</ion-label>
+            <p class="arrears">{{selectedBalance?.tya}}</p>
+          </ion-item>
+          <ion-item>
+            <ion-label>This Year Warrant</ion-label>
+            <p class="arrears">{{selectedBalance?.tyw}}</p>
+          </ion-item>
+          <ion-item>
+            <ion-label>This Quater Have to Pay</ion-label>
+            <p class="arrears">{{selectedBalance?.qpay}}</p>
+          </ion-item>
+          <ion-item>
+            <ion-label>Total</ion-label>
+            <p class="arrears"><strong>{{selectedBalance?.tot}}</strong></p>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Payment Amount : </ion-label>
+            <ion-input [(ngModel)]="amount" type="number"></ion-input>
+          </ion-item>
+
+        </ion-list>
+
+        <ion-button *ngIf="selectedAssessment" color="danger" expand="full" (click)="goToPay()">
+          Get Payment
+        </ion-button>
+
+      </ion-card-content>
+    </ion-card>
+  </ion-col>
+</ion-content>

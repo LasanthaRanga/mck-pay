@@ -9,13 +9,39 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+
+import { IonicStorageModule, Storage } from '@ionic/storage';
+import { HttpClientModule } from '@angular/common/http';
+import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
+
+
+export function jwtOptionsFacgtory(storage) {
+  return {
+    tokenGetter: () => {
+      const to = storage.get('secret');
+      // console.log(to);
+      return storage.get('secret');
+    },
+    whitelistedDomains: ['124.43.9.57:3000']
+  };
+}
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    IonicStorageModule.forRoot(),
+    JwtModule.forRoot({
+      jwtOptionsProvider: {
+        provide: JWT_OPTIONS,
+        useFactory: jwtOptionsFacgtory,
+        deps: [Storage]
+      }
+    })
   ],
   providers: [
     StatusBar,
@@ -24,4 +50,4 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
