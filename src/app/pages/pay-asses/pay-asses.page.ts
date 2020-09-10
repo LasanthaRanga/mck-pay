@@ -14,10 +14,19 @@ import { DataService } from 'src/app/services/data.service';
 export class PayAssesPage implements OnInit {
 
   payType;
+  ass;
+  amount;
 
   constructor(private apiCall: ApicallService, private router: Router, private stor: Storage, private dataService: DataService) { }
 
   ngOnInit() {
+    this.ass = this.dataService.getData('ass');
+    console.log(this.ass);
+
+    this.amount = this.dataService.getData('amount');
+    console.log(this.amount);
+    
+
   }
 
   payTypeChange() {

@@ -99,7 +99,7 @@ export class FindAssesPage implements OnInit {
   }
 
   goToPay() {
-    this.dataService.setData('idAss', this.selectedAssessment);
+    this.dataService.setData('ass', this.selectedAssessment);
     this.dataService.setData('amount', this.amount);
     this.router.navigate(['/pay-asses']);
   }

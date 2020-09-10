@@ -12,7 +12,7 @@
           Payment Information
         </ion-card-title>
         <ion-card-subtitle>
-          Fill the information
+          {{ass?.cus_name}}
         </ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
@@ -20,13 +20,19 @@
           <ion-label>
             Assessment ID
           </ion-label>
-          <p>454</p>
+          <p>{{ass?.idAssessment}}</p>
         </ion-item>
         <ion-item>
           <ion-label>
-            Payment Value :
+            Assessment No
           </ion-label>
-          <ion-input type="number"></ion-input>
+          <p>{{ass?.assessment_no}}</p>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            Payment Value Rs.
+          </ion-label>
+          <ion-input class="ion-text-right" type="number" [(ngModel)]="amount"></ion-input>
         </ion-item>
 
         <ion-radio-group [(ngModel)]="payType" (ngModelChange)="payTypeChange()">
