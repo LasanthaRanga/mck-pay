@@ -4,6 +4,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { StorService } from 'src/app/services/stor.service';
+import { ApicallService } from 'src/app/services/apicall.service';
 
 @Component({
   selector: 'app-root',
@@ -13,30 +14,47 @@ import { StorService } from 'src/app/services/stor.service';
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
   public user;
-  public appPages = [
-    {
-      title: 'Inbox',
-      url: '/folder/Inbox',
-      icon: 'mail'
-    },
+
+  public loged = [
+    // {
+    //   title: 'Inbox',
+    //   url: '/folder/Inbox',
+    //   icon: 'mail'
+    // },
     {
       title: 'Assessment',
       url: '/find-asses',
-      icon: 'trash'
+      icon: 'location'
     },
+    {
+      title: 'My Bills',
+      url: '/mybills',
+      icon: 'document-text'
+    },
+    {
+      title: 'Logout',
+      url: '/logout',
+      icon: 'log-out'
+    }
+  ];
+
+  public notlog = [
     {
       title: 'Login',
       url: '/login',
-      icon: 'warning'
+      icon: 'log-in'
     }
   ];
-  public labels = ['Family'];
+
+  public appPages = [];
+  // public labels = ['Family'];
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private stor: StorService
+    private stor: StorService,
+    private apiCall: ApicallService
   ) {
     this.initializeApp();
   }
@@ -45,6 +63,16 @@ export class AppComponent implements OnInit {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      this.apiCall.authenticationState.subscribe(status => {
+        if (status) {
+          this.appPages = this.loged;
+        } else {
+          this.appPages = this.notlog;
+        }
+      });
+
+
     });
   }
 

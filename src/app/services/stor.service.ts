@@ -20,4 +20,13 @@ export class StorService {
       func(null);
     });
   }
+
+  remove(key, func) {
+    this.storage.remove(key).then(result => {
+      func(result);
+    }).catch(error => {
+      func(null);
+    });
+  }
+
 }

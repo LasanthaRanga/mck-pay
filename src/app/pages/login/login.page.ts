@@ -20,7 +20,8 @@ export class LoginPage implements OnInit {
   pword;
   user;
   userUrl = environment.apiUrl + 'user/';
-  authenticationState = new BehaviorSubject(false);
+
+
 
   constructor(
     private apiCall: ApicallService,
@@ -48,6 +49,8 @@ export class LoginPage implements OnInit {
           this.stor.setLocalData('user', this.user, (ddd => {
             this.tost.showToast('Success', 'Login Complted', 'success');
             //  console.log(ddd);
+            this.apiCall.authenticationState.next(true);
+            window.location.replace('/home');
           }));
         }
       });

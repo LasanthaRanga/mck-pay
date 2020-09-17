@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Selected Assess Bill</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+
+        <h4>Recipt No: {{billData?.mobile_recipt_no}}</h4>
+        <h4>Amount : {{billData?.amount}}</h4>
+        <h4>Assessment No : {{billData?.assessment_no}}</h4>
+        <h4>Ward : {{billData?.ward_name}}</h4>
+        <h4>Street : {{billData?.street_name}}</h4>
+        <h4>Amount : {{billData?.ass_discription}}</h4>
+        <br><br>
+        <ion-button *ngIf="billData?.status==0" color="danger" expand="block" (click)="clickOnCancel()">Cancel This Bill</ion-button>
+
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+
+
+
+</ion-content>

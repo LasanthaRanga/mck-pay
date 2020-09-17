@@ -26,6 +26,22 @@ const routes: Routes = [
   {
     path: 'pay-asses',
     loadChildren: () => import('./pages/pay-asses/pay-asses.module').then( m => m.PayAssesPageModule)
+  },
+  {
+    path: 'logout',
+    loadChildren: () => import('./pages/logout/logout.module').then( m => m.LogoutPageModule)
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'mybills',
+    loadChildren: () => import('./pages/mybills/mybills.module').then( m => m.MybillsPageModule)
+  },
+  {
+    path: 'bill-asses/:id',
+    loadChildren: () => import('./pages/bill-asses/bill-asses.module').then( m => m.BillAssesPageModule)
   }
 ];
 

@@ -9,7 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-
+// ===================================================================
 import { IonicStorageModule, Storage } from '@ionic/storage';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
@@ -31,6 +31,7 @@ export function jwtOptionsFacgtory(storage) {
   entryComponents: [],
   imports: [
     BrowserModule,
+
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,

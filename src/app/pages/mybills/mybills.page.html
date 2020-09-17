@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>My Bills</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          Filter By Date Range
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="none">
+              From
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-input required maxlength="4" minlength="4" [(ngModel)]="fyear" placeholder="Year"></ion-input>
+          </ion-col>
+          <ion-col>
+            <ion-input required maxlength="2" minlength="2" [(ngModel)]="fmonth" placeholder="Month"></ion-input>
+          </ion-col>
+          <ion-col>
+            <ion-input required maxlength="2" minlength="2" [(ngModel)]="fdate" placeholder="Date"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="none">
+              To
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-input required maxlength="4" minlength="4" [(ngModel)]="tyear" placeholder="Year"></ion-input>
+          </ion-col>
+          <ion-col>
+            <ion-input required maxlength="2" minlength="2" [(ngModel)]="tmonth" placeholder="Month"></ion-input>
+          </ion-col>
+          <ion-col>
+            <ion-input required maxlength="2" minlength="2" [(ngModel)]="tdate" placeholder="Date"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-button expand="block" (click)="loadAll()">
+          Load
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+
+    <ion-row>
+      <ion-col>
+        <ion-card *ngFor="let bill of bills">
+          <ion-card-header>
+            <span *ngIf="bill?.status==0">
+              <h4>Recipt No: {{bill?.mobile_recipt_no}}</h4>
+            </span>
+            <span *ngIf="bill?.status==1">
+              <h4  style="color: green;">Completed Recipt No: {{bill?.mobile_recipt_no}}</h4>
+            </span>
+            <span *ngIf="bill?.status==2">
+              <h4 style="color: red;"> Canceled Recipt No: {{bill?.mobile_recipt_no}}</h4>
+            </span>
+            <h4>Price Rs. {{ bill?.amount | number  :'1.2-2'}} </h4>
+            <h5>{{bill?.collect_time | date: 'yyyy-MM-dd'}}</h5>
+            <ion-button  *ngIf="bill?.status==0 || bill?.status==1" class="ion-float-right" [routerLink]="['/bill-asses',bill.idMobilePay]">
+              Info
+            </ion-button>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>
+              Total Rs. {{ total| number  :'1.2-2'}}
+            </ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+
+  </ion-grid>
+</ion-content>
