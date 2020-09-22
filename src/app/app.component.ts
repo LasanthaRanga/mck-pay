@@ -32,6 +32,11 @@ export class AppComponent implements OnInit {
       icon: 'document-text'
     },
     {
+      title: 'Total Bill',
+      url: '/totbill-asses',
+      icon: 'receipt'
+    },
+    {
       title: 'Logout',
       url: '/logout',
       icon: 'log-out'

@@ -42,6 +42,10 @@ const routes: Routes = [
   {
     path: 'bill-asses/:id',
     loadChildren: () => import('./pages/bill-asses/bill-asses.module').then( m => m.BillAssesPageModule)
+  },
+  {
+    path: 'totbill-asses',
+    loadChildren: () => import('./pages/totbill-asses/totbill-asses.module').then( m => m.TotbillAssesPageModule)
   }
 ];
 

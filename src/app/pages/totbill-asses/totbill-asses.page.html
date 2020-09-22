@@ -3,12 +3,12 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>My Bills</ion-title>
+    <ion-title>Total Bill</ion-title>
   </ion-toolbar>
 </ion-header>
+
 <ion-content>
   <ion-grid>
-
     <ion-card>
       <ion-card-header>
         <ion-card-title>
@@ -19,7 +19,7 @@
         <ion-row>
           <ion-col>
             <ion-item lines="none">
-              From
+              Date
             </ion-item>
           </ion-col>
           <ion-col>
@@ -32,22 +32,7 @@
             <ion-input required maxlength="2" minlength="2" [(ngModel)]="fdate" placeholder="Date"></ion-input>
           </ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col>
-            <ion-item lines="none">
-              To
-            </ion-item>
-          </ion-col>
-          <ion-col>
-            <ion-input required maxlength="4" minlength="4" [(ngModel)]="tyear" placeholder="Year"></ion-input>
-          </ion-col>
-          <ion-col>
-            <ion-input required maxlength="2" minlength="2" [(ngModel)]="tmonth" placeholder="Month"></ion-input>
-          </ion-col>
-          <ion-col>
-            <ion-input required maxlength="2" minlength="2" [(ngModel)]="tdate" placeholder="Date"></ion-input>
-          </ion-col>
-        </ion-row>
+
         <ion-button expand="block" (click)="loadAll()">
           Load
         </ion-button>
@@ -78,6 +63,36 @@
         </ion-card>
       </ion-col>
 
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>
+              Cash Rs. {{ cash| number  :'1.2-2'}}
+            </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-button expand="block">
+              Print Cash Bill
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>
+              Cheque Rs. {{ cheque| number  :'1.2-2'}}
+            </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-button expand="block">
+              Print Cheque Bill
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>

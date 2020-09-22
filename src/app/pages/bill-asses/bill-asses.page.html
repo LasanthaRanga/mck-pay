@@ -17,7 +17,7 @@
         <h4>Assessment No : {{billData?.assessment_no}}</h4>
         <h4>Ward : {{billData?.ward_name}}</h4>
         <h4>Street : {{billData?.street_name}}</h4>
-        <h4>Amount : {{billData?.ass_discription}}</h4>
+        <h4>Description : {{billData?.ass_discription}}</h4>
         <br><br>
         <ion-button *ngIf="billData?.status==0" color="danger" expand="block" (click)="clickOnCancel()">Cancel This Bill</ion-button>
 
