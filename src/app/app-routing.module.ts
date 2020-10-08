@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/Inbox',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -46,6 +46,14 @@ const routes: Routes = [
   {
     path: 'totbill-asses',
     loadChildren: () => import('./pages/totbill-asses/totbill-asses.module').then( m => m.TotbillAssesPageModule)
+  },
+  {
+    path: 'find-shop',
+    loadChildren: () => import('./pages/find-shop/find-shop.module').then( m => m.FindShopPageModule)
+  },
+  {
+    path: 'printer',
+    loadChildren: () => import('./pages/printer/printer.module').then( m => m.PrinterPageModule)
   }
 ];
 

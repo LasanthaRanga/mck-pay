@@ -72,14 +72,14 @@
               Cash Rs. {{ cash| number  :'1.2-2'}}
             </ion-card-subtitle>
           </ion-card-header>
-          <ion-card-content>
-            <ion-button expand="block">
-              Print Cash Bill
+          <ion-card-content *ngIf="total>0">
+            <ion-button expand="block" (click)="clickOnCashTotal()">
+              Create Total Bill
             </ion-button>
           </ion-card-content>
         </ion-card>
       </ion-col>
-      <ion-col>
+      <!-- <ion-col>
         <ion-card>
           <ion-card-header>
             <ion-card-subtitle>
@@ -92,7 +92,7 @@
             </ion-button>
           </ion-card-content>
         </ion-card>
-      </ion-col>
+      </ion-col> -->
     </ion-row>
     <ion-row>
       <ion-col>
@@ -108,4 +108,24 @@
 
 
   </ion-grid>
+
+  <ion-grid>
+    <ion-row *ngFor="let tb of totBills">
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>{{tb.no}}</ion-card-title>
+            <ion-card-title>{{ tb.total| number  :'1.2-2'}}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-button expand="block" (click)="reprint()">
+              Re Print
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
 </ion-content>

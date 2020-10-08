@@ -20,7 +20,7 @@ export class LoginPage implements OnInit {
   pword;
   user;
   userUrl = environment.apiUrl + 'user/';
-
+  sabaName;
 
 
   constructor(
@@ -31,7 +31,13 @@ export class LoginPage implements OnInit {
     private stor: StorService
   ) { }
   ngOnInit() {
+    this.getName();
+  }
 
+  getName() {
+    this.apiCall.getValue("saba_name", data => {
+      this.sabaName = data.value;
+    });
   }
 
   login() {
@@ -46,6 +52,8 @@ export class LoginPage implements OnInit {
             // console.log(dd);
           });
           this.user = this.helper.decodeToken(data['token']);
+          //  let isExpired = this.helper.isTokenExpired(data['token']);
+
           this.stor.setLocalData('user', this.user, (ddd => {
             this.tost.showToast('Success', 'Login Complted', 'success');
             //  console.log(ddd);

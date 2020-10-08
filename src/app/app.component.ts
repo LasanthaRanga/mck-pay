@@ -32,9 +32,19 @@ export class AppComponent implements OnInit {
       icon: 'document-text'
     },
     {
-      title: 'Total Bill',
+      title: 'Create AT Total',
       url: '/totbill-asses',
       icon: 'receipt'
+    },
+    {
+      title: 'Find Shop',
+      url: '/find-shop',
+      icon: 'search'
+    },
+    {
+      title: 'Printers',
+      url: '/printer',
+      icon: 'print'
     },
     {
       title: 'Logout',

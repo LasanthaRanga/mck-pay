@@ -16,38 +16,18 @@
         </ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <ion-row>
-          <ion-col>
-            <ion-item lines="none">
-              From
-            </ion-item>
-          </ion-col>
-          <ion-col>
-            <ion-input required maxlength="4" minlength="4" [(ngModel)]="fyear" placeholder="Year"></ion-input>
-          </ion-col>
-          <ion-col>
-            <ion-input required maxlength="2" minlength="2" [(ngModel)]="fmonth" placeholder="Month"></ion-input>
-          </ion-col>
-          <ion-col>
-            <ion-input required maxlength="2" minlength="2" [(ngModel)]="fdate" placeholder="Date"></ion-input>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <ion-item lines="none">
-              To
-            </ion-item>
-          </ion-col>
-          <ion-col>
-            <ion-input required maxlength="4" minlength="4" [(ngModel)]="tyear" placeholder="Year"></ion-input>
-          </ion-col>
-          <ion-col>
-            <ion-input required maxlength="2" minlength="2" [(ngModel)]="tmonth" placeholder="Month"></ion-input>
-          </ion-col>
-          <ion-col>
-            <ion-input required maxlength="2" minlength="2" [(ngModel)]="tdate" placeholder="Date"></ion-input>
-          </ion-col>
-        </ion-row>
+
+
+        <ion-item>
+          <ion-label>From :</ion-label>
+          <ion-datetime [(ngModel)]="from" displayFormat="YYYY-MM-DD" placeholder="Select Date"></ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-label>To :</ion-label>
+          <ion-datetime [(ngModel)]="to" displayFormat="YYYY-MM-DD" placeholder="Select Date"></ion-datetime>
+        </ion-item>
+
+
         <ion-button expand="block" (click)="loadAll()">
           Load
         </ion-button>
@@ -93,4 +73,7 @@
 
 
   </ion-grid>
+
+
+
 </ion-content>

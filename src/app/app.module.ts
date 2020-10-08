@@ -9,11 +9,13 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+
 // ===================================================================
 import { IonicStorageModule, Storage } from '@ionic/storage';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
 
 export function jwtOptionsFacgtory(storage) {
   return {
@@ -31,7 +33,6 @@ export function jwtOptionsFacgtory(storage) {
   entryComponents: [],
   imports: [
     BrowserModule,
-
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
@@ -42,12 +43,14 @@ export function jwtOptionsFacgtory(storage) {
         useFactory: jwtOptionsFacgtory,
         deps: [Storage]
       }
-    })
+    }),
+    BrowserAnimationsModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    BluetoothSerial
   ],
   bootstrap: [AppComponent]
 })

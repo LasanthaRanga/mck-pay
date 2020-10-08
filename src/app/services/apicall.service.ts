@@ -9,10 +9,14 @@ import { Platform } from '@ionic/angular';
   providedIn: 'root'
 })
 export class ApicallService {
+  mobKeyVal = environment.apiUrl + 'mobKeyVal/';
 
   authenticationState = new BehaviorSubject(false);
+
   user;
+
   TOKEN_KEY = 'secret';
+
   constructor(private http: HttpClient, private storage: Storage, private helper: JwtHelperService, private plt: Platform) {
     this.plt.ready().then(() => {
       this.checkToken();
@@ -25,6 +29,19 @@ export class ApicallService {
     }, error => {
       func(error);
     });
+  }
+
+  getValue(k, func) {
+    try {
+      this.http.post(this.mobKeyVal, { key: k }).subscribe(result => {
+        func(result[0]);
+      }, error => {
+        console.log(error);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+
   }
 
   checkToken() {
