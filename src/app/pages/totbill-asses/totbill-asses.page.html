@@ -115,10 +115,11 @@
         <ion-card>
           <ion-card-header>
             <ion-card-title>{{tb.no}}</ion-card-title>
+            <ion-card-title>{{tb.idMobTot}}_M</ion-card-title>
             <ion-card-title>{{ tb.total| number  :'1.2-2'}}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <ion-button expand="block" (click)="reprint()">
+            <ion-button expand="block" (click)="reprint(tb)">
               Re Print
             </ion-button>
           </ion-card-content>

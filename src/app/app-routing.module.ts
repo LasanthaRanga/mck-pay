@@ -54,6 +54,10 @@ const routes: Routes = [
   {
     path: 'printer',
     loadChildren: () => import('./pages/printer/printer.module').then( m => m.PrinterPageModule)
+  },
+  {
+    path: 'pay-shop',
+    loadChildren: () => import('./pages/pay-shop/pay-shop.module').then( m => m.PayShopPageModule)
   }
 ];
 

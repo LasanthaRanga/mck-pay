@@ -17,6 +17,9 @@ import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
 
+import { File } from '@ionic-native/file';
+import { FileOpener } from '@ionic-native/file-opener';
+
 export function jwtOptionsFacgtory(storage) {
   return {
     tokenGetter: () => {
@@ -44,13 +47,15 @@ export function jwtOptionsFacgtory(storage) {
         deps: [Storage]
       }
     }),
+
     BrowserAnimationsModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    BluetoothSerial
+    BluetoothSerial,
+
   ],
   bootstrap: [AppComponent]
 })

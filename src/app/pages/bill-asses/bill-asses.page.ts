@@ -133,11 +133,12 @@ export class BillAssesPage implements OnInit {
       const d = new Date(dd[0].collect_time);
 
 
+
+
       const myText = this.sabaName + '\n' +
         '    Assessment Tax Payment    \n' +
         '------------------------------ \n' +
         ' Receipt No : ' + dd[0].mobile_recipt_no + '\n' +
-        ' Name : ' + dd[0].cus_name + '\n' +
         ' A.Tax No : ' + dd[0].assessment_no + '\n' +
         ' PAID : Rs.' + dd[0].amount.toFixed(2) + '\n' +
         ' Date : ' + d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate() + '  '

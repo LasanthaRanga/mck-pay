@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Shop Information</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <ion-card *ngIf="shopData">
+    <ion-card-header>
+      <ion-card-title>
+        {{shopData.cusFull}}
+      </ion-card-title>
+      <ion-card-subtitle>
+        {{shopData.sr_building_name}} - {{shopData.sr_shop_type_name}} - {{shopData.sr_shop_value_rental}}
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+
+
+    </ion-card-content>
+  </ion-card>
+
+  <div style="text-align: center;">
+    <ion-button color="success" (click)="selectAllMonths()">Select All Months </ion-button>
+    <ion-button color="warning" (click)="unselectAllMonths()">Unselect All Months </ion-button>
+  </div>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let item of payList">
+          <ion-label>{{item.sr_shop_proc_year}} - {{item.month}} : </ion-label>
+          Total : {{item.tot}}
+          <ion-checkbox slot="start" [(ngModel)]="item.isSelect" disabled="{{!item.canSelect}}"
+            checked="{{item.isSelect}}" (ngModelChange)="manageMonth()"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <h2 *ngIf="total">Total Rs. {{total}}</h2>
+
+
+
+</ion-content>

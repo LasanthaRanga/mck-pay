@@ -42,7 +42,7 @@
             <span *ngIf="bill?.status==0">
               <h4>Recipt No: {{bill?.mobile_recipt_no}}</h4>
             </span>
-            <span *ngIf="bill?.status==1">
+            <span *ngIf="bill?.status==1||bill?.status==3">
               <h4 style="color: green;">Completed Recipt No: {{bill?.mobile_recipt_no}}</h4>
             </span>
             <span *ngIf="bill?.status==2">

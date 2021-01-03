@@ -18,6 +18,7 @@ export class HomePage implements OnInit {
       this.logo = data.value;
       console.log(this.logo);
     });
+
   }
 
 }

@@ -14,6 +14,7 @@ import { environment } from 'src/environments/environment';
 export class TotbillAssesPage implements OnInit {
   mobPay = environment.apiUrl + 'mobPay/';
   mobPayTot = environment.apiUrl + 'mobPayTot/';
+  mobprint = environment.apiUrl + 'mobprint/';
   from = '';
   to = '';
 
@@ -28,6 +29,8 @@ export class TotbillAssesPage implements OnInit {
   total = 0.0;
   cash = 0.0;
   cheque = 0.0;
+  sabaName = '';
+  macAddress = '';
 
   bluetoothList: any = [];
   selectedPrinter: any;
@@ -47,7 +50,7 @@ export class TotbillAssesPage implements OnInit {
     this.tdate = this.fdate;
 
     this.getLogUser();
-
+    this.getName();
 
   }
 
@@ -62,11 +65,26 @@ export class TotbillAssesPage implements OnInit {
     }
   }
 
+  getName() {
+    this.apiCall.getValue('saba_name', data => {
+      this.sabaName = data.value;
+    });
+  }
+
+  getMacAddress() {
+    this.apiCall.call(this.mobprint + 'getMyPrinter', { uid: this.user.uid }, data => {
+      this.macAddress = data[0].macAddress;
+      console.log(this.macAddress);
+    });
+  }
+
+
   getLogUser() {
     this.store.getLocalData('user', data => {
       this.user = data;
       console.log(this.user);
       this.loadBillst();
+      this.getMacAddress();
     });
   }
 
@@ -143,7 +161,9 @@ export class TotbillAssesPage implements OnInit {
           payType: 1,
           chno: ''
         }, data => {
+          console.log('------------------');
           console.log(data);
+          console.log('------------------');
           this.getTotalBills();
           this.bills = [];
 
@@ -160,9 +180,20 @@ export class TotbillAssesPage implements OnInit {
     });
   }
 
-  reprint() {
-    // reprint bill
+  reprint(tb) {
+    console.log(tb);
+
+    const totalBill = this.sabaName + '\n' +
+      '  Assessment Tax Collection\n' +
+      '------------------------------ \n' +
+      '  Barcord ID: ' + tb.idMobTot + '_' + 'M\n' +
+      '  Receipt No: ' + tb.no + '\n' +
+      '  Amount: Rs.' + tb.total.toFixed(2) + '\n' +
+      '------------------------------ \n \n \n \n  ';
+    this.print.sendToBluetoothPrinter(this.macAddress, totalBill);
   }
+
+  
 
 
 }

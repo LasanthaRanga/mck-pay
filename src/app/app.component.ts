@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
     {
       title: 'Find Shop',
       url: '/find-shop',
-      icon: 'search'
+      icon: 'business'
     },
     {
       title: 'Printers',

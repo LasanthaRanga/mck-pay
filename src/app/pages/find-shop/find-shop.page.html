@@ -1,9 +1,60 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>find-shop</ion-title>
+    <ion-title>Find Shop</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Find Shop</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+
+      <ion-item>
+        <ion-label>Office</ion-label>
+        <ion-select [(ngModel)]="seletedOffice" (ngModelChange)="getBuildings()">
+          <ion-select-option *ngFor="let off of offises" [value]="off">{{off.office_name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label>Building</ion-label>
+        <ion-select [(ngModel)]="selectedBuilding" (ngModelChange)="getFlor()">
+          <ion-select-option *ngFor="let bu of buildings" [value]="bu">{{bu.sr_building_name}} </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label>Flow</ion-label>
+        <ion-select [(ngModel)]="selectedFlors">
+          <ion-select-option *ngFor="let ff of flors" [value]="ff">{{ff.sr_flow_name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label>Shop Number</ion-label>
+        <ion-input [(ngModel)]="sno"></ion-input>
+      </ion-item>
+
+
+      <ion-button expand="block" (click)="getShops()">Find</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngFor="let shop of shops">
+    <ion-card-header>
+      <ion-card-title>{{shop.cusFull}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{shop.sr_shop_type_name}} - {{shop.sr_shop_value_rental}}</p>
+      <ion-button color="secondary" expand="block" horizontal="end" (click)="goToPay(shop)" >Mor Info</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  
 </ion-content>
